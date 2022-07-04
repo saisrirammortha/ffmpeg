@@ -150,6 +150,7 @@ OBJS-$(CONFIG_LOWSHELF_FILTER)               += af_biquads.o
 OBJS-$(CONFIG_LV2_FILTER)                    += af_lv2.o
 OBJS-$(CONFIG_MCOMPAND_FILTER)               += af_mcompand.o
 OBJS-$(CONFIG_PAN_FILTER)                    += af_pan.o
+OBJS-$(CONFIG_DOWNSAMPLE_FILTER)             += af_downsample.o
 OBJS-$(CONFIG_REPLAYGAIN_FILTER)             += af_replaygain.o
 OBJS-$(CONFIG_RUBBERBAND_FILTER)             += af_rubberband.o
 OBJS-$(CONFIG_SIDECHAINCOMPRESS_FILTER)      += af_sidechaincompress.o

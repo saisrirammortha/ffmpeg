@@ -137,6 +137,7 @@ extern const AVFilter ff_af_lowshelf;
 extern const AVFilter ff_af_lv2;
 extern const AVFilter ff_af_mcompand;
 extern const AVFilter ff_af_pan;
+extern const AVFilter ff_af_downsample;
 extern const AVFilter ff_af_replaygain;
 extern const AVFilter ff_af_rubberband;
 extern const AVFilter ff_af_sidechaincompress;

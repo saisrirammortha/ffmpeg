@@ -106,7 +106,6 @@ static int config_props(AVFilterLink *link)
 	return 0;
 }
 
-//static int filter_frame(AVFilterLink *inlink, AVFrame *in)
 static int filter_frame(AVFilterLink *inlink, AVFrame *insamples)
 {
 	int ret;
@@ -134,83 +133,8 @@ FF_ENABLE_DEPRECATION_WARNINGS
 	ret = ff_filter_frame(outlink, outsamples);
 	av_frame_free(&insamples);
 	return ret;
-//    av_log(NULL, AV_LOG_INFO, "Init");
-//    int ret;
-//    AVFilterLink *outlink = inlink->dst->outputs[0];
-//    AVChannelLayout out_channel_layout;
-//    struct SwrContext *swr;
-//    double *gain;
-////     Get Input Layout
-//    // Set Swr
-//    // Use SWR to resample input and store in output
-//    ret = av_channel_layout_from_string(&out_channel_layout, "1c");
-//    av_log(NULL, AV_LOG_INFO, "Got Channel layout");
-//    if (ret<0){
-//        goto fail;
-//    }
-//
-//    // init libswresample context
-//    gain = (double *)malloc(in->ch_layout.nb_channels * sizeof(double));
-//    int i;
-//    for (i=0;i<in->ch_layout.nb_channels;i++)
-//    	gain[i]=1.0;
-//    ret = swr_alloc_set_opts2(&swr,
-//                              &out_channel_layout, in->format, in->sample_rate,
-//                              &in->ch_layout, in->format, in->sample_rate,
-//                              0, NULL);
-//    swr_set_matrix(swr, gain, in->ch_layout.nb_channels);
-//    int r = swr_init(swr);
-//	if (r < 0)
-//		return r;
-//	av_log(NULL, AV_LOG_INFO, "Created SWR");
-//
-//    av_opt_set_int(swr, "uch", out_channel_layout.nb_channels, 0);
-//    // Notsure what this do
-//    int channel_map[] = {0};
-//    swr_set_channel_mapping(swr, channel_map);
-//
-//    if (ret < 0)
-//        return AVERROR(ENOMEM);
-//
-//    int n = in->nb_samples;
-//
-//    AVFrame *out = ff_get_audio_buffer(outlink,n);
-//
-//
-//    if (!out) {
-//        ret = AVERROR(ENOMEM);
-//        goto fail;
-//    }
-//
-//    swr_convert(swr, out->extended_data, n,
-//    		(void *)in->extended_data,n);
-//
-//
-//    ret = av_frame_copy_props(out, in);
-//    if (ret < 0)
-//        goto fail;
-//
-//    ret = av_frame_copy(out, in);
-//    if (ret < 0)
-//        goto fail;
-//
-//#if FF_API_OLD_CHANNEL_LAYOUT
-//FF_DISABLE_DEPRECATION_WARNINGS
-//    out->channel_layout = outlink->channel_layout;
-//    out->channels = outlink->ch_layout.nb_channels;
-//FF_ENABLE_DEPRECATION_WARNINGS
-//#endif
-//    if ((ret = av_channel_layout_copy(&out->ch_layout, &outlink->ch_layout)) < 0)
-//        return ret;
-//
-//    av_frame_free(&in);
-//
-//    return ff_filter_frame(outlink, out);
-//fail:
-//    av_frame_free(&in);
-//    av_frame_free(&out);
-//    return ret;
 }
+
 static av_cold int init(AVFilterContext *ctx)
 {
 	DownsampleContext *const downsample = ctx->priv;
